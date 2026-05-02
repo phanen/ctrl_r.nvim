@@ -36,6 +36,10 @@ H.w = function()
   return require('ctrl_r.path').HOME_to_tilde(name)
 end
 
+H.e = function() return vim.v.errmsg or '' end
+
+H.s = function() return vim.v.statusmsg or '' end
+
 H.m = function() return _G.last_msg or '' end
 
 local invald_pos = { 0, 0, 0, 0 }
@@ -62,6 +66,14 @@ end
 
 H[';'] = function() return fn.histget(':', -1) end
 
+H['<c-f>'] = function() return fn.expand('<cfile>') end
+
+H['<c-p>'] = function() return fn.expand('<cfile>') end
+
 H['<c-w>'] = function() return fn.expand('<cword>') end
+
+H['<c-a>'] = function() return fn.expand('<cWORD>') end
+
+H['<c-l>'] = function() return fn.getline('.') end
 
 return M
