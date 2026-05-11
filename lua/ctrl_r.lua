@@ -76,4 +76,16 @@ H['<c-a>'] = function() return fn.expand('<cWORD>') end
 
 H['<c-l>'] = function() return fn.getline('.') end
 
+H['<c-e>'] = function()
+  local mode = api.nvim_get_mode().mode
+  local content = fn.getreg('+')
+  if mode:match('t') then
+    return require('ctrl_r.escape').rg(content)
+  elseif mode:match('c') then
+    return require('ctrl_r.escape').search(content)
+  else
+    return content
+  end
+end
+
 return M
