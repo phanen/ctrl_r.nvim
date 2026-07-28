@@ -88,4 +88,6 @@ H['<c-e>'] = function()
   end
 end
 
+H['<c-g>'] = function() return fn.fnameescape(fn['fugitive#Object'](fn.expand('%'))) end
+
 return M
